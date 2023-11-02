@@ -10,7 +10,6 @@ const getComputerChoice = () => {
     // get random number between 1 and 3
     randomNumber = Math.floor(Math.random() * 4);
     if(randomNumber == 0) {
-        // getComputerChoice();
         randomNumber++;
     };    
     // main logic matches random number with either rock, paper, or scissors
@@ -35,10 +34,10 @@ const getComputerChoice = () => {
 // getting players choice
 const getPlayerChoice = () => {
     playerChoice = prompt('Please Enter Your choice:');
+    // turns player choice to all lower case
     playerChoice = playerChoice.toLowerCase();
     // checking players choice is either rock, paper, or, scissors
     if(playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors') {
-        // turns player choice to all lower case
         return playerChoice;
     }else{
         getPlayerChoice();
@@ -54,27 +53,39 @@ const playRound = (playerSelection, computerSelection) => {
         return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + 'Its a tie!';
     }else if (playerSelection == 'rock' && computerSelection == 'paper'){
         computerWins();
-        return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + `Computer wins! paper beats rock!`;
+        return `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Computer wins! paper beats rock!`;
 
     }else if (playerSelection == 'paper' && computerSelection == 'rock'){
         playerWins();
-        return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + `Player wins! paper beats rock!`;
+        return `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Player wins! paper beats rock!`;
 
     }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
         computerWins();
-        return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + `Computer wins! rock beats scissors!`;
+        return `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Computer wins! rock beats scissors!`;
 
     }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
         playerWins();
-        return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + `Player wins! rock beats scissors!`;
+        return `Player choice: ${playerSelection}\n` + `
+        Computer choice: ${computerSelection}\n` + 
+        `Player wins! rock beats scissors!`;
 
     }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
         computerWins();
-        return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + `Computer wins! scissors beats paper!`;
+        return `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Computer wins! scissors beats paper!`;
         
     }else if(playerSelection == 'scissors' && computerSelection == 'paper'){
         playerWins();
-        return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + `Player wins! scissors beats paper!`;
+        return `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Player wins! scissors beats paper!`;
     };
 };
 
@@ -104,7 +115,13 @@ const computerWins = () => {
     // logic for game of 5 rounds 
 const game = () => {
     for(i = 1; i < 6; i++) {
-        console.log(`Round Number:${i}\n`,playRound(getPlayerChoice(), getComputerChoice()), `\nComputer Score: ${computerWinCounter}`, `\nPlayer Score: ${playerWinCounter}`);
+        // showing round number
+        console.log(`Round Number:${i}/5\n`,
+        // playing round
+        playRound(getPlayerChoice(), getComputerChoice()), 
+        // showing score
+        `\nComputer Score: ${computerWinCounter}`, 
+        `\nPlayer Score: ${playerWinCounter}`);
     };
 
     // output game ending message; Who won?
