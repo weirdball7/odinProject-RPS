@@ -1,8 +1,31 @@
 // console.log('Hello World');
 let randomNumber;
-let playerChoice;
+// let playerChoice;
+let div;
 let playerWinCounter = 0;
 let computerWinCounter = 0;
+let rockBtn = document.querySelector('#rock');
+let paperBtn = document.querySelector('#paper');
+let scissorsBtn = document.querySelector('#scissors');
+const gameContainer = document.querySelector('#container');
+
+
+
+// const Paper = () => {
+//     console.log('player chose paper');
+//     playRound('paper', getComputerChoice);
+// };
+
+// const Scissors = () => {
+//     console.log('player chose scissors');
+//     playRound('scissors', getComputerChoice);
+// };
+
+// const Rock = () =>{
+//     console.log('player chose rock');
+//     playRound('rock', getComputerChoice);
+// };
+
 
 // getting computer choice
 const getComputerChoice = () => {
@@ -31,64 +54,6 @@ const getComputerChoice = () => {
     };
 };
 
-// getting players choice
-const getPlayerChoice = () => {
-    playerChoice = prompt('Please Enter Your choice:');
-    // turns player choice to all lower case
-    playerChoice = playerChoice.toLowerCase();
-    // checking players choice is either rock, paper, or, scissors
-    if(playerChoice == 'rock' || playerChoice == 'paper' || playerChoice == 'scissors') {
-        return playerChoice;
-    }else{
-        getPlayerChoice();
-    };
-};
-// console.log(getPlayerChoice());
-
-
-    // game round logic
-const playRound = (playerSelection, computerSelection) => {
-    // checking for a tie
-    if (playerSelection === computerSelection) {
-        return `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + 'Its a tie!';
-    }else if (playerSelection == 'rock' && computerSelection == 'paper'){
-        computerWins();
-        return `Player choice: ${playerSelection}\n` + 
-        `Computer choice: ${computerSelection}\n` + 
-        `Computer wins! paper beats rock!`;
-
-    }else if (playerSelection == 'paper' && computerSelection == 'rock'){
-        playerWins();
-        return `Player choice: ${playerSelection}\n` + 
-        `Computer choice: ${computerSelection}\n` + 
-        `Player wins! paper beats rock!`;
-
-    }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
-        computerWins();
-        return `Player choice: ${playerSelection}\n` + 
-        `Computer choice: ${computerSelection}\n` + 
-        `Computer wins! rock beats scissors!`;
-
-    }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
-        playerWins();
-        return `Player choice: ${playerSelection}\n` + `
-        Computer choice: ${computerSelection}\n` + 
-        `Player wins! rock beats scissors!`;
-
-    }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
-        computerWins();
-        return `Player choice: ${playerSelection}\n` + 
-        `Computer choice: ${computerSelection}\n` + 
-        `Computer wins! scissors beats paper!`;
-        
-    }else if(playerSelection == 'scissors' && computerSelection == 'paper'){
-        playerWins();
-        return `Player choice: ${playerSelection}\n` + 
-        `Computer choice: ${computerSelection}\n` + 
-        `Player wins! scissors beats paper!`;
-    };
-};
-
     // counting wins for computer and player
 // counting wins for player
 const playerWins = () => {
@@ -112,26 +77,106 @@ const computerWins = () => {
 };
 
 
-    // logic for game of 5 rounds 
-const game = () => {
-    for(i = 1; i < 6; i++) {
-        // showing round number
-        console.log(`Round Number:${i}/5\n`,
-        // playing round
-        playRound(getPlayerChoice(), getComputerChoice()), 
-        // showing score
-        `\nComputer Score: ${computerWinCounter}`, 
-        `\nPlayer Score: ${playerWinCounter}`);
-    };
+// getting players choice
+    // game round logic
+const playRound = (playerSelection, computerSelection) => {
+    // checking for a tie
+    if (playerSelection === computerSelection) {
+        console.log(computerSelection);
+        div = document.createElement('div');
+        div.innerText = `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + 'Its a tie!';
+        gameContainer.appendChild(div);
+    }else if (playerSelection == 'rock' && computerSelection == 'paper'){
+        console.log(computerSelection);
+        computerWins();
+        div = document.createElement('div');
+        div.innerText = `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Computer wins! paper beats rock!`;
+        gameContainer.appendChild(div);
 
-    // output game ending message; Who won?
-    if(computerWinCounter == playerWinCounter){
-        return 'Game is a tie!'
-    }else if(computerWinCounter > playerWinCounter){
-        return 'Computer wins the game!';
-    }else{
-        return 'Player wins the game';
+    }else if (playerSelection == 'paper' && computerSelection == 'rock'){
+        console.log(computerSelection);
+        playerWins();
+        div = document.createElement('div');
+        div.innerText = `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Player wins! paper beats rock!`;
+        gameContainer.appendChild(div);
+
+    }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
+        console.log(computerSelection);
+        computerWins();
+        div = document.createElement('div');
+        gameContainer.innerText = `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Computer wins! rock beats scissors!`;
+        gameContainer.appendChild(div);
+
+    }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
+        console.log(computerSelection);
+        playerWins();
+        div = document.createElement('div');
+        div.innerText = `Player choice: ${playerSelection}\n` + `
+        Computer choice: ${computerSelection}\n` + 
+        `Player wins! rock beats scissors!`;
+        gameContainer.appendChild(div);
+
+    }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
+        console.log(computerSelection);
+        computerWins();
+        div = document.createElement('div');
+        div.innerText = `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Computer wins! scissors beats paper!`;
+        gameContainer.appendChild(div);
+        
+    }else if(playerSelection == 'scissors' && computerSelection == 'paper'){
+        console.log(computerSelection);
+        playerWins();
+        div = document.createElement('div');
+        div.innerText = `Player choice: ${playerSelection}\n` + 
+        `Computer choice: ${computerSelection}\n` + 
+        `Player wins! scissors beats paper!`;
+        gameContainer.appendChild(div);
     };
 };
 
-console.log(game());
+if (rockBtn) {
+    rockBtn.addEventListener('click', playRound('rock', getComputerChoice()));
+};
+
+if (paperBtn) {
+    paperBtn.addEventListener('click', playRound('paper', getComputerChoice()));
+};
+
+if (scissorsBtn) {
+    scissorsBtn.addEventListener('click', playRound('scissors', getComputerChoice()));
+};
+
+
+
+
+    // logic for game of 5 rounds 
+// const game = () => {
+//     for(i = 1; i < 6; i++) {
+//         // showing round number
+//         console.log(`Round Number:${i}/5\n`,
+//         // playing round
+//         playRound(getPlayerChoice(), getComputerChoice()), 
+//         // showing score
+//         `\nComputer Score: ${computerWinCounter}`, 
+//         `\nPlayer Score: ${playerWinCounter}`);
+//     };
+
+//     // output game ending message; Who won?
+//     if(computerWinCounter == playerWinCounter){
+//         return 'Game is a tie!'
+//     }else if(computerWinCounter > playerWinCounter){
+//         return 'Computer wins the game!';
+//     }else{
+//         return 'Player wins the game';
+//     };
+// };
+
+// console.log(playRound());
