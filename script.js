@@ -4,27 +4,27 @@ let randomNumber;
 let div;
 let playerWinCounter = 0;
 let computerWinCounter = 0;
-let rockBtn = document.querySelector('#rock');
-let paperBtn = document.querySelector('#paper');
-let scissorsBtn = document.querySelector('#scissors');
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
 const gameContainer = document.querySelector('#container');
 
 
 
-// const Paper = () => {
-//     console.log('player chose paper');
-//     playRound('paper', getComputerChoice);
-// };
+const Paper = () => {
+    console.log('player chose paper');
+    playRound('paper', getComputerChoice);
+};
 
-// const Scissors = () => {
-//     console.log('player chose scissors');
-//     playRound('scissors', getComputerChoice);
-// };
+const Scissors = () => {
+    console.log('player chose scissors');
+    playRound('scissors', getComputerChoice);
+};
 
-// const Rock = () =>{
-//     console.log('player chose rock');
-//     playRound('rock', getComputerChoice);
-// };
+const Rock = () =>{
+    console.log('player chose rock');
+    playRound('rock', getComputerChoice);
+};
 
 
 // getting computer choice
@@ -80,16 +80,17 @@ const computerWins = () => {
 // getting players choice
     // game round logic
 const playRound = (playerSelection, computerSelection) => {
+    div = document.createElement('div');
     // checking for a tie
     if (playerSelection === computerSelection) {
         console.log(computerSelection);
-        div = document.createElement('div');
+        // div = document.createElement('div');
         div.innerText = `Player choice: ${playerSelection}\n` + `Computer choice: ${computerSelection}\n` + 'Its a tie!';
         gameContainer.appendChild(div);
+
     }else if (playerSelection == 'rock' && computerSelection == 'paper'){
         console.log(computerSelection);
         computerWins();
-        div = document.createElement('div');
         div.innerText = `Player choice: ${playerSelection}\n` + 
         `Computer choice: ${computerSelection}\n` + 
         `Computer wins! paper beats rock!`;
@@ -98,7 +99,7 @@ const playRound = (playerSelection, computerSelection) => {
     }else if (playerSelection == 'paper' && computerSelection == 'rock'){
         console.log(computerSelection);
         playerWins();
-        div = document.createElement('div');
+        // div = document.createElement('div');
         div.innerText = `Player choice: ${playerSelection}\n` + 
         `Computer choice: ${computerSelection}\n` + 
         `Player wins! paper beats rock!`;
@@ -107,7 +108,7 @@ const playRound = (playerSelection, computerSelection) => {
     }else if (playerSelection == 'scissors' && computerSelection == 'rock'){
         console.log(computerSelection);
         computerWins();
-        div = document.createElement('div');
+        // div = document.createElement('div');
         gameContainer.innerText = `Player choice: ${playerSelection}\n` + 
         `Computer choice: ${computerSelection}\n` + 
         `Computer wins! rock beats scissors!`;
@@ -116,7 +117,7 @@ const playRound = (playerSelection, computerSelection) => {
     }else if (playerSelection == 'rock' && computerSelection == 'scissors'){
         console.log(computerSelection);
         playerWins();
-        div = document.createElement('div');
+        // div = document.createElement('div');
         div.innerText = `Player choice: ${playerSelection}\n` + `
         Computer choice: ${computerSelection}\n` + 
         `Player wins! rock beats scissors!`;
@@ -125,7 +126,7 @@ const playRound = (playerSelection, computerSelection) => {
     }else if (playerSelection == 'paper' && computerSelection == 'scissors'){
         console.log(computerSelection);
         computerWins();
-        div = document.createElement('div');
+        // div = document.createElement('div');
         div.innerText = `Player choice: ${playerSelection}\n` + 
         `Computer choice: ${computerSelection}\n` + 
         `Computer wins! scissors beats paper!`;
@@ -134,24 +135,25 @@ const playRound = (playerSelection, computerSelection) => {
     }else if(playerSelection == 'scissors' && computerSelection == 'paper'){
         console.log(computerSelection);
         playerWins();
-        div = document.createElement('div');
+        // div = document.createElement('div');
         div.innerText = `Player choice: ${playerSelection}\n` + 
         `Computer choice: ${computerSelection}\n` + 
         `Player wins! scissors beats paper!`;
         gameContainer.appendChild(div);
     };
+    // gameContainer.removeChild(div);
 };
 
 if (rockBtn) {
-    rockBtn.addEventListener('click', playRound('rock', getComputerChoice()));
+    rockBtn.addEventListener('click', Rock);
 };
 
 if (paperBtn) {
-    paperBtn.addEventListener('click', playRound('paper', getComputerChoice()));
+    paperBtn.addEventListener('click', Paper);
 };
 
 if (scissorsBtn) {
-    scissorsBtn.addEventListener('click', playRound('scissors', getComputerChoice()));
+    scissorsBtn.addEventListener('click', Scissors);
 };
 
 
